@@ -1,0 +1,51 @@
+class Solution:
+    # @param A : list of integers
+    # @param B : integer
+    # @return an integer
+    
+    
+    def binarySearch(self, A, mid):
+        Sum = 0
+        need = 1 
+        for i in range(len(A)):
+            
+            if Sum + A[i] > mid:
+                need += 1
+                Sum = 0
+                
+            Sum += A[i]
+                
+        
+        
+        return need  
+                
+        
+        
+    def books(self, A, B):
+        
+        #Base Case :-
+        
+        if B > len(A):      #If number of Distribution will be grater than the students, then
+            return -1       #in this case we have to return -1, i.e. we can't assign the books in the range.
+            
+            
+        low = max(A)
+        high = sum(A)
+        ans = low
+        
+        while(low < high):
+            mid = (low + high)//2
+            
+            
+            need = self.binarySearch(A, mid)     #Finding the need of Students for current no of pages.
+            
+            if need > B:
+                low = mid + 1
+                ans = low
+            else:
+                high = mid
+       
+           
+           
+        return ans
+        
